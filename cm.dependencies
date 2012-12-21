@@ -1,5 +1,13 @@
 [
     {
+        "repository": "android_device_samsung_n1-common",
+        "target_path": "device/samsung/n1-common"
+    },
+    {
+        "repository": "android_kernel_samsung_n1",
+        "target_path": "kernel/samsung/n1"
+    },
+    {
         "repository": "android_packages_apps_SamsungServiceMode",
         "target_path": "packages/apps/SamsungServiceMode"
     }
