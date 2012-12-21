@@ -1,0 +1,17 @@
+# RIL
+rild.libpath=/system/lib/libsec-ril.so
+rild.libargs=-d /dev/ttyS0
+ro.ril.enable.3g.prefix=1
+ro.ril.enable.a52=1
+ro.ril.enable.a53=1
+ro.ril.enable.dtm=1
+ro.ril.enable.managed.roaming=1
+ro.ril.gprsclass=12
+ro.ril.hep=1
+ro.ril.hsdpa.category=14
+ro.ril.hsupa.category=6
+ro.ril.hsxpa=2
+ro.ril.ecclist=104,105,107,112,911
+
+# Forbid format of these partitions in mount menu
+ro.cwm.forbid_format=/misc,/radio,/recovery,/efs
