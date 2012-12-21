@@ -16,7 +16,7 @@
 
 LOCAL_PATH := device/samsung/i9103
 
-TARGET_KERNEL_CONFIG := tegra_n1_jb_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_i9103_defconfig
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := i9103,GT-I9103
