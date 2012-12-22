@@ -12,6 +12,14 @@ LOCAL_PATH := device/samsung/i9103
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Init-scripts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ueventd.n1.rc:root/ueventd.n1.rc
+
+# Camera
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/nvcamera.conf:system/etc/nvcamera.conf
+
 # This device is hdpi.
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
