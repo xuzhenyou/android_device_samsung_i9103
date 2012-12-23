@@ -36,6 +36,8 @@ for FILE in `cat ../$COMMON/proprietary-common-files.txt | grep -v ^# | grep -v 
     adb pull /$FILE $COMMONBASE/$FILE
 done
 
+adb pull /sbin/cbd $COMMONBASE/sbin/cbd
+
 echo "Pulling device-specific files..."
 for FILE in `cat proprietary-$DEVICE-files.txt | grep -v ^# | grep -v ^$`; do
     DIR=`dirname $FILE`
@@ -60,7 +62,11 @@ done
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PRODUCT_PACKAGES += \\
+PRODUCT_COPY_FILES := \\
+    vendor/__VENDOR__/__COMMON__/proprietary/system/lib/libril.so:obj/lib/libril.so \\
+
+PRODUCT_COPY_FILES += \\
+    vendor/__VENDOR__/__COMMON__/proprietary/sbin/cbd:root/sbin/cbd \\
 EOF
 
 LINEEND=" \\"
@@ -90,7 +96,6 @@ done
 
 # Prebuilt libraries that are needed to build open-source libraries
 PRODUCT_COPY_FILES := \\
-    vendor/__VENDOR__/__COMMON__/proprietary/system/lib/libril.so:obj/lib/libril.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/system/lib/libsecril-client.so:obj/lib/libsecril-client.so
 
 PRODUCT_COPY_FILES += \\
