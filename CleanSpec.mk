@@ -47,5 +47,5 @@
 # ************************************************
 # NEWER CLEAN STEPS MUST BE AT THE END OF THE LIST
 # ************************************************
-$(call add-clean-step, rm $(PRODUCT_OUT)/CM10-*.zip)
-$(call add-clean-step, rm $(PRODUCT_OUT)/CM10-*.zip.md5sum)
+$(call add-clean-step, rm $(PRODUCT_OUT)/cm-10-*.zip)
+$(call add-clean-step, rm $(PRODUCT_OUT)/cm-10-*.zip.md5sum)
