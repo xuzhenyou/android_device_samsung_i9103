@@ -1,4 +1,12 @@
-system/bin/rild 
-system/lib/libril.so 
-system/lib/libsec-ril.so 
-system/lib/libsecril-client.so 
+system/etc/firmware/bcm4330.hcd
+system/etc/wifi/nvram_net.txt
+system/etc/wifi/nvram_net.txt_murata
+system/lib/hw/camera.tegra.so
+system/lib/hw/gps.tegra.so
+system/lib/hw/sensors.n1.so
+system/lib/libakm.so
+system/lib/libnvmm_camera.so
+system/lib/libnvodm_imager.so
+system/lib/libnvodm_query.so
+system/lib/libsec-ril.so
+system/lib/libsecril-client.so

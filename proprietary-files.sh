@@ -24,6 +24,9 @@ DEVICEOUTDIR=vendor/$VENDOR/$DEVICE
 DEVICEBASE=../../../$DEVICEOUTDIR/proprietary
 DEVICEMAKEFILE=../../../$DEVICEOUTDIR/$DEVICE-vendor-blobs.mk
 
+adb root
+sleep 3
+
 echo "Pulling common files..."
 for FILE in `cat ../$COMMON/proprietary-common-files.txt | grep -v ^# | grep -v ^$`; do
     DIR=`dirname $FILE`
@@ -33,7 +36,7 @@ for FILE in `cat ../$COMMON/proprietary-common-files.txt | grep -v ^# | grep -v 
     adb pull /$FILE $COMMONBASE/$FILE
 done
 
-echo "Pulling device specific files..."
+echo "Pulling device-specific files..."
 for FILE in `cat proprietary-$DEVICE-files.txt | grep -v ^# | grep -v ^$`; do
     DIR=`dirname $FILE`
     if [ ! -d $DEVICEBASE/$DIR ]; then
@@ -58,8 +61,6 @@ done
 # limitations under the License.
 
 PRODUCT_PACKAGES += \\
-	libTVOut
-
 EOF
 
 LINEEND=" \\"
@@ -71,39 +72,6 @@ for FILE in `cat ../$COMMON/proprietary-common-files.txt | grep -v ^# | grep -v 
     fi
     echo "    $COMMONOUTDIR/proprietary/$FILE:$FILE$LINEEND" >> $COMMONMAKEFILE
 done
-
-(cat << EOF) | sed s/__COMMON__/$COMMON/g | sed s/__DEVICE__/$DEVICE/g | sed s/__VENDOR__/$VENDOR/g > $COMMONBASE/Android.mk
-# Copyright (C) 2012 The CyanogenMod Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-LOCAL_PATH := \$(call my-dir)
-
-ifneq (\$(filter i927 i9103,\$(TARGET_DEVICE)),)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE := libTVOut
-LOCAL_MODULE_OWNER := samsung
-LOCAL_SRC_FILES := system/lib/libTVOut.so
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_SUFFIX := .so
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-LOCAL_MODULE_PATH := \$(TARGET_OUT)/lib
-include \$(BUILD_PREBUILT)
-
-endif
-
-EOF
 
 (cat << EOF) | sed s/__COMMON__/$COMMON/g | sed s/__DEVICE__/$DEVICE/g | sed s/__VENDOR__/$VENDOR/g > $DEVICEMAKEFILE
 # Copyright (C) 2012 The CyanogenMod Project
